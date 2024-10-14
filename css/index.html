@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Inventario</title>
+    <!-- Importando Materialize CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h3 class="center-align">System.ADSO</h3>
+
+      <!-- Tabla de Inventario -->
+      <table class="highlight">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody id="inventory-table">
+          <!-- Aquí se agregarán los productos -->
+        </tbody>
+      </table>
+
+      <!-- Formulario para agregar productos -->
+      <div class="row">
+        <form class="col s12" id="product-form">
+          <div class="row">
+            <div class="input-field col s4">
+              <input id="product_name" type="text" class="validate" required />
+              <label for="product_name">Nombre del Producto</label>
+            </div>
+            <div class="input-field col s4">
+              <input
+                id="product_quantity"
+                type="number"
+                class="validate"
+                required
+              />
+              <label for="product_quantity">Cantidad</label>
+            </div>
+            <div class="input-field col s4">
+              <input
+                id="product_price"
+                type="number"
+                step="0.01"
+                class="validate"
+                required
+              />
+              <label for="product_price">Precio</label>
+            </div>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit">
+            Agregar Producto
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Importando Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document
+        .getElementById("product-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Obtener valores del formulario
+          const productName = document.getElementById("product_name").value;
+          const productQuantity =
+            document.getElementById("product_quantity").value;
+          const productPrice = document.getElementById("product_price").value;
+
+          // Crear una nueva fila en la tabla
+          const table = document.getElementById("inventory-table");
+          const row = table.insertRow();
+          row.insertCell(0).innerText = productName;
+          row.insertCell(1).innerText = productQuantity;
+          row.insertCell(2).innerText = productPrice;
+
+          // Limpiar el formulario
+          document.getElementById("product-form").reset();
+        });
+    </script>
+  </body>
+</html>
